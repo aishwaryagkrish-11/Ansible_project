@@ -1,0 +1,13 @@
+[Unit]
+Description=Example Flask Application
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/opt/example
+ExecStart=/opt/example/run.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

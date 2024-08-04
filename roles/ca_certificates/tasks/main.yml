@@ -1,0 +1,17 @@
+---
+- name: Install standard CA certificates
+  apt:
+    name: ca-certificates
+    state: present
+
+- name: Deploy custom CA certificates
+  copy:
+    src: "{{ item }}"
+    dest: "/usr/local/share/ca-certificates/"
+    mode: '0644'
+  with_fileglob:
+    - "{{ playbook_dir }}/roles/ca_certificates/files/*.crt"
+
+- name: Update CA certificates
+  command: update-ca-certificates
+

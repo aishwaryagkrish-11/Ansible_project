@@ -1,0 +1,4 @@
+#!/bin/bash
+export INSTANCE_PATH="{{ instance_path }}"
+exec gunicorn -b 0.0.0.0:{{ port }} app:app
+

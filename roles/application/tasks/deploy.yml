@@ -1,0 +1,24 @@
+- name: Create deployment directory
+  file:
+    path: "{{ deployment_folder }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Create virtual environment
+  command: python3 -m venv "{{ deployment_folder }}/venv"
+
+- name: Copy the application wheel file
+  copy:
+    src: Example-1.1.1-py3-none-any.whl
+    dest: "{{ deployment_folder }}/Example-1.1.1-py3-none-any.whl"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install application wheel
+  pip:
+    name: "{{ deployment_folder }}/Example-1.1.1-py3-none-any.whl"
+    virtualenv: "{{ deployment_folder }}/venv"
+

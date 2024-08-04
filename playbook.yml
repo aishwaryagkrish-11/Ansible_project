@@ -1,0 +1,10 @@
+---
+- name: Configure target hosts
+  hosts: target
+  become: yes
+
+  roles:
+    - ca_certificates
+    - application
+    - security
+

@@ -1,0 +1,24 @@
+- name: Create instance directory
+  file:
+    path: "{{ instance_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Deploy config.py
+  template:
+    src: config.py.j2
+    dest: "{{ instance_path }}/config.py"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Deploy run.sh
+  template:
+    src: run.sh.j2
+    dest: "{{ deployment_folder }}/run.sh"
+    owner: root
+    group: root
+    mode: '0755'
+
